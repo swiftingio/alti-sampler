@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<array>
+    <dict>
+        <key>name</key>
+        <string>ROSIERE</string>
+        <key>lifts</key>
+        <array>
+            <string>TSD ROCHES NOIRES</string>
+            <string>TS ECUDETS</string>
+            <string>TK CLARINES 1</string>
+            <string>TK CLARINES 2</string>
+            <string>TK LIEVRE BLANC 1</string>
+            <string>TK LIEVRE BLANC 2</string>
+            <string>TK MANESSIER</string>
+            <string>TK POLETTA</string>
+            <string>TK SEVOLIERE</string>
+        </array>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>EUCHERTS</string>
+        <key>lifts</key>
+        <array>
+            <string>TSD LES EUCHERTS</string>
+            <string>TSD PLAN DU REPOS</string>
+            <string>TS PETIT BOIS</string>
+            <string>TK DAHU</string>
+            <string>LES LUTINS</string>
+        </array>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>FORT</string>
+        <key>lifts</key>
+        <array>
+            <string>TS CHARDONNET</string>
+            <string>TSD FORT</string>
+            <string>TK BELLECOMBE</string>
+            <string>TK BELLECOMBE 1</string>
+            <string>TK BELLECOMBE 2</string>
+        </array>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>LIAISON</string>
+        <key>lifts</key>
+        <array>
+            <string>ROSIERE -&gt; THUILE</string>
+        </array>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>LA THUILE-LES SUCHES</string>
+        <key>lifts</key>
+        <array>
+            <string>TL LES SUCHES</string>
+            <string>SG BOSCO EXPRESS</string>
+            <string>SG MAISON BLANCHE</string>
+            <string>NA EDELWEISS</string>
+        </array>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>LES SUCHES-CHAZ DURA</string>
+        <key>lifts</key>
+        <array>
+            <string>SG CHAZ DURA EXP*</string>
+            <string>SG * INTERMEDIA</string>
+            <string>SG CHALET EXPRESS</string>
+            <string>SG CHAZ DURA</string>
+            <string>SG LA COMBE</string>
+            <string>SC GRAN TESTA</string>
+            <string>SC LES SUCHES IV</string>
+            <string>SC PILONI</string>
+            <string>NA NASTRO GALLERY</string>
+        </array>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>BELVEDERE S.BERNARDO</string>
+        <key>lifts</key>
+        <array>
+            <string>SG FOURCLAZ EXP</string>
+            <string>SG P.S BERNARDO EX</string>
+            <string>SG BELVEDERE</string>
+        </array>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>ARGILLIEN-ARNOUVAZ</string>
+        <key>lifts</key>
+        <array>
+            <string>SG ARGILLIEN EXP.</string>
+            <string>SG ARNOUVAZ</string>
+        </array>
+    </dict>
+</array>
