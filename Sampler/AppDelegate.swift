@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } catch { print("\(error)") }
         }
     }
-    
+
     func applicationWillEnterForeground(_ application: UIApplication) {}
     func applicationDidEnterBackground(_ application: UIApplication) { logBackgroundTime() }
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {}

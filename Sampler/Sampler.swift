@@ -13,9 +13,9 @@ class Sampler: NSObject {
     let queue: OperationQueue
     let altimeter: CMAltimeter
     let locationManager: CLLocationManager
-    
+
     fileprivate(set) var isRecording = false
-    fileprivate(set) var recentLocation:CLLocation?
+    fileprivate(set) var recentLocation: CLLocation?
     fileprivate(set) var samples: [Sample] = [] {
         didSet {
             guard let sample = samples.last else { return }
@@ -24,7 +24,7 @@ class Sampler: NSObject {
             }
         }
     }
-    
+
     init(queue: OperationQueue = OperationQueue.AltimeterQueue,
          altimeter: CMAltimeter = CMAltimeter(),
          locationManager: CLLocationManager) {
@@ -42,16 +42,16 @@ extension Sampler {
             locationManager.requestAlwaysAuthorization()
         }
     }
-    
+
     func clearSamples() {
         samples = []
     }
-    
+
     func samplingAvailable() -> Bool {
         return CMAltimeter.isRelativeAltitudeAvailable() &&
             CLLocationManager.locationServicesEnabled()
     }
-    
+
     func startSampling() {
         guard samplingAvailable() else { return }
         requestLocationPermissionIfNeeded()
@@ -60,13 +60,13 @@ extension Sampler {
                                                withHandler: { [weak self] in self?.altitudeUpdated($0, $1) })
         locationManager.startUpdatingLocation()
     }
-    
+
     func stopSampling() {
         isRecording = false
         altimeter.stopRelativeAltitudeUpdates()
         locationManager.stopUpdatingLocation()
     }
-    
+
     func altitudeUpdated(_ data: CMAltitudeData?, _ error: Error?) {
         guard error == nil else { print(error!.localizedDescription); return; }
         guard let data = data else { return }
@@ -77,10 +77,10 @@ extension Sampler {
 }
 
 extension Sampler: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         recentLocation = locations.last
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         guard isRecording &&
             status == .authorizedAlways ||

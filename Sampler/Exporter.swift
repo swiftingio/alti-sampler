@@ -13,7 +13,7 @@ class Exporter {
         self.context = context
         self.encoder.dateEncodingStrategy = .iso8601
     }
-    
+
     func allRecordings() throws -> [String] {
         let request: NSFetchRequest<Recording> = NSFetchRequest(entityName: String(describing: Recording.self))
         request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
@@ -21,7 +21,7 @@ class Exporter {
         let strings: [String] = recordings.map { $0.json ?? "" }.filter { $0 != "" }
         return strings
     }
-    
+
     func saveAsPlistToDocuments() throws -> String? {
         let recordings = try allRecordings()
         let filePath = documentsPath.appendingPathComponent("\(Date()).plist")
@@ -29,13 +29,13 @@ class Exporter {
         let saved = (recordings as NSArray).write(toFile: filePath, atomically: true)
         return saved ? filePath : nil
     }
-    
+
     func allJSONRecordings() throws -> String {
         let recordings = try allRecordings()
         let json = "[\(recordings.joined(separator: ","))]"
         return json
     }
-    
+
     func save(_ samples: [Sample], outputFormatting: JSONEncoder.OutputFormatting = JSONEncoder.OutputFormatting(rawValue: 0)) {
         guard !samples.isEmpty else { return }
         do {
@@ -50,7 +50,7 @@ class Exporter {
             print(error.localizedDescription)
         }
     }
-    
+
     func json(from sample: Sample, outputFormatting: JSONEncoder.OutputFormatting = .prettyPrinted) -> String? {
         do {
             encoder.outputFormatting = outputFormatting

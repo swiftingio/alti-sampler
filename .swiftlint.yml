@@ -1,0 +1,61 @@
+swiftlint_version: 0.23.1
+disabled_rules: # rule identifiers to exclude from running
+  - attributes # Generated CoreData is non-compliant
+  - closure_end_indentation # XCode aligns closure end with the start of expression, not the start of closure
+  - missing_docs # We don't want to document public methods overriden from UIKit
+  - nesting # VIP models and function static variables require type nesting
+  - number_separator # SwiftLint 0.15 does not support minimum_length and autocorrects to 2_017
+  - trailing_comma # Useful for extending some collections
+  - unused_closure_parameter # Unused closure parameters are needed for inference of generics
+  - vertical_parameter_alignment # XCode aligns arguments with the template argument
+  - conditional_returns_on_newline
+opt_in_rules: # some rules are only opt-in
+  - closure_parameter_position
+  - closure_spacing
+  - conditional_returns_on_newline
+  - cyclomatic_complexity
+  - empty_count
+  - explicit_init
+  - file_header                              
+  - first_where                             
+  - force_unwrapping
+  - object_literal                          
+  - operator_usage_whitespace
+  - overridden_super_call
+  - private_outlet
+  - prohibited_super_call
+  - redundant_nil_coalescing                
+  - redundant_nil_coalesing
+  - switch_case_on_newline                  
+  - valid_docs
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+  - components
+  - Playground.playground
+
+# binary rules can set their severity level
+force_cast: error 
+force_try: error 
+line_length:
+  warning: 140
+  ignores_urls: true
+type_body_length:
+  - 300 # warning
+  - 400 # error
+file_length:
+  warning: 500
+  error: 1000
+function_parameter_count:
+  warning: 5
+  error: 6
+cyclomatic_complexity:
+  warning: 4
+  error: 6
+  ignores_case_statements: true
+function_body_length:
+  warning: 50
+  error: 200
+variable_name:
+  min_length: 2
+  max_length: 32

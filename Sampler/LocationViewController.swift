@@ -18,7 +18,7 @@ extension LiftLocation {
     }
 }
 class LocationViewController: UIViewController {
-    
+
     weak var delegate: LocationViewControllerDelegate?
     fileprivate var cancelButton: UIBarButtonItem!
     fileprivate var doneButton: UIBarButtonItem!
@@ -28,7 +28,7 @@ class LocationViewController: UIViewController {
     let segmentedControl = UISegmentedControl(items: [LiftLocation.top.rawValue, LiftLocation.bottom.rawValue])
     var liftLocation: LiftLocation = .bottom
     var selectedIndexPath: IndexPath?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         cancelButton = UIBarButtonItem(barButtonSystemItem:
@@ -50,17 +50,17 @@ class LocationViewController: UIViewController {
         navigationItem.titleView = segmentedControl
         segmentedControl.addTarget(self, action: #selector(liftLocationChanged), for: .valueChanged)
     }
-    
+
     func liftLocationChanged() {
         doneButton.isEnabled = true
         liftLocation = LiftLocation(int: segmentedControl.selectedSegmentIndex)
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
+
     @objc fileprivate func cancelTapped() {
         dismiss()
     }
@@ -73,7 +73,7 @@ class LocationViewController: UIViewController {
         }
         dismiss()
     }
-    
+
 }
 
 extension String {
@@ -81,31 +81,31 @@ extension String {
     static let lifts: String = "lifts"
 }
 extension LocationViewController: UITableViewDataSource {
-    
+
     func data(forSection section: Int) -> NSArray {
         return (contentArray.object(at: section) as? NSDictionary)?.value(forKey: .lifts) as? NSArray ?? NSArray()
     }
-    
+
     func data(for indexPath: IndexPath) -> String {
         return data(forSection: indexPath.section).object(at: indexPath.row) as! String
     }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return contentArray.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return data(forSection: section).count }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         cell.textLabel?.text = data(for: indexPath)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return (contentArray[section] as? NSDictionary)?.value(forKey: .name) as? String ?? ""
     }
-    
+
 }
 
 extension LocationViewController: UITableViewDelegate {
@@ -120,4 +120,3 @@ extension UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
-

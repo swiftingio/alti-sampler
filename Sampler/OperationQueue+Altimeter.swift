@@ -5,6 +5,6 @@ extension OperationQueue {
         let queue = OperationQueue()
         queue.qualityOfService = .background
         queue.maxConcurrentOperationCount = OperationQueue.defaultMaxConcurrentOperationCount
-        return queue;
+        return queue
     }()
 }
