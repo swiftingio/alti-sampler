@@ -62,4 +62,8 @@ class Exporter {
             return nil
         }
     }
+
+    func clearAll() {
+        try? context.deleteEntities(ofType: Recording.self)
+    }
 }

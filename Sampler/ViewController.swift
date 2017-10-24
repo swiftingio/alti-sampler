@@ -4,6 +4,7 @@ class ViewController: UIViewController {
 
     var button: UIBarButtonItem!
     var export: UIBarButtonItem!
+    var clear: UIBarButtonItem!
     var textView: UITextView!
     let toolbar = UIToolbar(frame: .zero)
     var locationButton: UIBarButtonItem!
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Pressure + Location"
-        setupButton()
+        setupButtons()
         setupTextView()
         setupToolbar()
     }
@@ -39,12 +40,14 @@ class ViewController: UIViewController {
         toolbar.frame.origin.y = view.bounds.origin.y + view.bounds.size.height - toolbar.frame.size.height
     }
 
-    private func setupButton() {
-        button = UIBarButtonItem(title: "stop", style: .plain, target: self, action: #selector(toggleRecording))
+    private func setupButtons() {
+        button = UIBarButtonItem(title: "record", style: .plain, target: self, action: #selector(toggleRecording))
         setButtonTitle(self.sampler.isRecording)
-        navigationItem.rightBarButtonItem = button
         export = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAll))
-        navigationItem.leftBarButtonItem = export
+        clear = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clearDatabase))
+        navigationItem.rightBarButtonItem = button
+        navigationItem.leftBarButtonItems = [export, clear]
+
     }
 
     private func setupToolbar() {
@@ -126,6 +129,17 @@ class ViewController: UIViewController {
         } catch {
             printE(error)
         }
+    }
+
+    func clearDatabase() {
+        let alert = UIAlertController(title: "Remove recordings", message: "Do you want to remove all recorded data?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "cancel", style: .default)
+        let remove = UIAlertAction(title: "remove", style: .destructive) { [weak self] _ in
+            self?.exporter.clearAll()
+        }
+        alert.addAction(remove)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
 }
 
