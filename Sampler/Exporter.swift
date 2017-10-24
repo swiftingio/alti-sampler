@@ -7,7 +7,7 @@ enum Field: String {
 class Exporter {
     let context: NSManagedObjectContext
     let filemgr = FileManager.default
-    let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+    let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
     let encoder = JSONEncoder()
     init(context: NSManagedObjectContext) {
         self.context = context

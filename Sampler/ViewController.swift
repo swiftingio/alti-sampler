@@ -78,7 +78,7 @@ class ViewController: UIViewController {
     }
 
     func showLocationPicker() {
-        let viewController = LocationViewController()
+        let viewController = SkiLiftPickerViewController()
         viewController.delegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true, completion: nil)
@@ -129,8 +129,8 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: LocationViewControllerDelegate {
-    func locationViewController(_ viewController: LocationViewController, didSelectLocation location: String) {
+extension ViewController: SkiLiftPickerViewControllerDelegate {
+    func locationViewController(_ viewController: SkiLiftPickerViewController, didSelectLocation location: String) {
         sampler.locationName = location
     }
 }

@@ -17,7 +17,7 @@
 		6982BEDA1E6C758400BB0B7E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6982BED91E6C758400BB0B7E /* CoreData.framework */; };
 		6982BEDC1E6C758A00BB0B7E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6982BEDB1E6C758A00BB0B7E /* CoreMotion.framework */; };
 		6982BEDE1E6C758F00BB0B7E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6982BEDD1E6C758F00BB0B7E /* CoreLocation.framework */; };
-		698B580F1E6DB618004FF70C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B580E1E6DB618004FF70C /* LocationViewController.swift */; };
+		698B580F1E6DB618004FF70C /* SkiLiftPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B580E1E6DB618004FF70C /* SkiLiftPickerViewController.swift */; };
 		698B58111E6DBFC1004FF70C /* Lifts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 698B58101E6DBFC1004FF70C /* Lifts.plist */; };
 		698B58131E6E1881004FF70C /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B58121E6E1881004FF70C /* Sample.swift */; };
 		698B58151E6E1CCB004FF70C /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B58141E6E1CCB004FF70C /* Exporter.swift */; };
@@ -36,7 +36,7 @@
 		6982BED91E6C758400BB0B7E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6982BEDB1E6C758A00BB0B7E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		6982BEDD1E6C758F00BB0B7E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		698B580E1E6DB618004FF70C /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		698B580E1E6DB618004FF70C /* SkiLiftPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkiLiftPickerViewController.swift; sourceTree = "<group>"; };
 		698B58101E6DBFC1004FF70C /* Lifts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lifts.plist; sourceTree = "<group>"; };
 		698B58121E6E1881004FF70C /* Sample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		698B58141E6E1CCB004FF70C /* Exporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 				698B58121E6E1881004FF70C /* Sample.swift */,
 				51CF4FBF1F6EA53500D413F1 /* Sampler.swift */,
 				6982BEC31E6C64B700BB0B7E /* ViewController.swift */,
-				698B580E1E6DB618004FF70C /* LocationViewController.swift */,
+				698B580E1E6DB618004FF70C /* SkiLiftPickerViewController.swift */,
 				698B58141E6E1CCB004FF70C /* Exporter.swift */,
 				51CF4FC11F6EA56200D413F1 /* OperationQueue+Altimeter.swift */,
 				698B58161E6EE7EA004FF70C /* Resources */,
@@ -211,7 +211,7 @@
 				698B58151E6E1CCB004FF70C /* Exporter.swift in Sources */,
 				51803E431F9E0857003F3280 /* Model.xcdatamodeld in Sources */,
 				51CF4FC21F6EA56200D413F1 /* OperationQueue+Altimeter.swift in Sources */,
-				698B580F1E6DB618004FF70C /* LocationViewController.swift in Sources */,
+				698B580F1E6DB618004FF70C /* SkiLiftPickerViewController.swift in Sources */,
 				6982BEC21E6C64B700BB0B7E /* AppDelegate.swift in Sources */,
 				698B58131E6E1881004FF70C /* Sample.swift in Sources */,
 			);

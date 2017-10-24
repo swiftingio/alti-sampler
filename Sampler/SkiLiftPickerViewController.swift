@@ -1,7 +1,7 @@
 import UIKit
 
-protocol LocationViewControllerDelegate: class {
-    func locationViewController(_ viewController: LocationViewController, didSelectLocation location: String)
+protocol SkiLiftPickerViewControllerDelegate: class {
+    func locationViewController(_ viewController: SkiLiftPickerViewController, didSelectLocation location: String)
 }
 
 enum LiftLocation: String {
@@ -17,38 +17,55 @@ extension LiftLocation {
         }
     }
 }
-class LocationViewController: UIViewController {
 
-    weak var delegate: LocationViewControllerDelegate?
-    fileprivate var cancelButton: UIBarButtonItem!
-    fileprivate var doneButton: UIBarButtonItem!
-    fileprivate lazy var tableView = UITableView(frame: .zero, style: .plain)
-    let reuseIdentifier: String = String(describing: UITableViewCell.self)
-    var contentArray: NSArray = NSArray()
+extension UITableViewCell {
+    public static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+}
+
+class SkiLiftPickerViewController: UIViewController {
+
+    weak var delegate: SkiLiftPickerViewControllerDelegate?
+    fileprivate lazy var cancelButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem:
+            .cancel, target: self, action: #selector(cancelTapped))
+    }()
+    fileprivate lazy var doneButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem:
+            .done, target: self, action: #selector(doneTapped))
+        button.isEnabled = false
+        return button
+    }()
+    fileprivate lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
+        return tableView
+    }()
+    lazy var contentArray: NSArray = {
+        let path = Bundle.main.path(forResource: "Lifts", ofType: "plist")!
+        let contentArray: NSArray = NSArray(contentsOfFile: path)!
+        return contentArray
+    }()
     let segmentedControl = UISegmentedControl(items: [LiftLocation.top.rawValue, LiftLocation.bottom.rawValue])
     var liftLocation: LiftLocation = .bottom
     var selectedIndexPath: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        cancelButton = UIBarButtonItem(barButtonSystemItem:
-            .cancel, target: self, action: #selector(cancelTapped))
-        doneButton = UIBarButtonItem(barButtonSystemItem:
-            .done, target: self, action: #selector(doneTapped))
-        doneButton.isEnabled = false
-        navigationItem.rightBarButtonItem = doneButton
-        navigationItem.leftBarButtonItem = cancelButton
         view.addSubview(tableView)
         view.backgroundColor = .white
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        let path = Bundle.main.path(forResource: "Lifts", ofType: "plist")!
-        contentArray = NSArray(contentsOfFile: path) ?? NSArray() //as! [ [String:[String]] ]
-        tableView.reloadData()
+
         segmentedControl.sizeToFit()
-        navigationItem.titleView = segmentedControl
         segmentedControl.addTarget(self, action: #selector(liftLocationChanged), for: .valueChanged)
+
+        navigationItem.rightBarButtonItem = doneButton
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.titleView = segmentedControl
+
+        tableView.reloadData()
     }
 
     func liftLocationChanged() {
@@ -68,7 +85,7 @@ class LocationViewController: UIViewController {
     @objc fileprivate func doneTapped() {
         if let delegate = delegate,
             let indexPath = selectedIndexPath {
-            let location = data(for: indexPath) + " " + liftLocation.rawValue
+            let location = "\(data(for: indexPath)) \(liftLocation.rawValue)"
             delegate.locationViewController(self, didSelectLocation: location)
         }
         dismiss()
@@ -80,7 +97,8 @@ extension String {
     static let name: String = "name"
     static let lifts: String = "lifts"
 }
-extension LocationViewController: UITableViewDataSource {
+
+extension SkiLiftPickerViewController: UITableViewDataSource {
 
     func data(forSection section: Int) -> NSArray {
         return (contentArray.object(at: section) as? NSDictionary)?.value(forKey: .lifts) as? NSArray ?? NSArray()
@@ -97,7 +115,7 @@ extension LocationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return data(forSection: section).count }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.reuseIdentifier, for: indexPath)
         cell.textLabel?.text = data(for: indexPath)
         return cell
     }
@@ -108,7 +126,7 @@ extension LocationViewController: UITableViewDataSource {
 
 }
 
-extension LocationViewController: UITableViewDelegate {
+extension SkiLiftPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
     }
